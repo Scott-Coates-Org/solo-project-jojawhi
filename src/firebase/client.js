@@ -5,7 +5,7 @@ import { firebase } from '@firebase/app';
 // These imports load individual services into the firebase namespace. e.g. import 'firebase/auth';
 import '@firebase/auth';
 import '@firebase/storage';
-import "firebase/firestore";
+import 'firebase/firestore';
 
 const firebaseKey = process.env.REACT_APP_FIREBASE_API_KEY;
 const firebaseProjectId = process.env.REACT_APP_FIREBASE_PROJECT_ID;
@@ -13,10 +13,10 @@ const firebaseAuthDomain = process.env.REACT_APP_FIREBASE_AUTH_DOMAIN;
 const firebaseStorageBucket = process.env.REACT_APP_FIREBASE_STORAGE_BUCKET;
 
 const options = {
-    apiKey: firebaseKey,
-    authDomain: firebaseAuthDomain,
-    projectId: firebaseProjectId,
-    storageBucket: firebaseStorageBucket,
+	apiKey: firebaseKey,
+	authDomain: firebaseAuthDomain,
+	projectId: firebaseProjectId,
+	storageBucket: firebaseStorageBucket,
 };
 
 const client = firebase.initializeApp(options);
