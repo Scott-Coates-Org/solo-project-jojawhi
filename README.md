@@ -79,6 +79,6 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 
 [*Replace me with mockups*]
 
-| ![](src/images/student-dashboard.png) | ![](src/images/teacher-student-view) |
+| ![](src/images/student-dashboard.png) | ![](src/images/teacher-student-view.png) |
 |----------------------------------------------------------------------|----------------------------------------------------------------------|
 | ![](src/images/pela3.jpg) | ![](src/images/pela4.jpg) |
