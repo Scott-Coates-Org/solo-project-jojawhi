@@ -45,8 +45,8 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 
 ### Sprint 1
 
-- [ ] Get app approved (DM Scott for approval)
-- [ ] Create mockups (physical paper, low-fi)
+- [✅] Get app approved (DM Scott for approval)
+- [✅] Create mockups (physical paper, low-fi)
 - [ ] Define scope (DM Scott for approval)
   - [ ] Define milestones for each sprint
   - [ ] Define final deliverable for v1
@@ -79,6 +79,6 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 
 [*Replace me with mockups*]
 
-| ![Benjamin Bannekat](https://octodex.github.com/images/bannekat.png) | ![Benjamin Bannekat](https://octodex.github.com/images/bannekat.png) |
+| ![](src/images/student-dashboard.png) | ![](src/images/teacher-student-view) |
 |----------------------------------------------------------------------|----------------------------------------------------------------------|
-| ![Benjamin Bannekat](https://octodex.github.com/images/bannekat.png) | ![Benjamin Bannekat](https://octodex.github.com/images/bannekat.png) |
+| ![](src/images/pela3.jpg) | ![](src/images/pela4.jpg) |
