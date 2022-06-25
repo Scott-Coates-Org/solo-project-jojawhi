@@ -48,18 +48,21 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 
 - [✅] Get app approved (DM Scott for approval)
 - [✅] Create mockups (physical paper, low-fi)
-- [ ] Define scope (DM Scott for approval)
-     - [ ] Define milestones for each sprint
-     - [ ] Define final deliverable for v1
+- [✅] Define scope (DM Scott for approval)
+     - [✅] Define milestones for each sprint
+     - [✅] Define final deliverable for v1
 - [ ] App must
-     - [ ] Be publicly accessible
+     - [✅] Be publicly accessible
      - [ ] Have working authentication
      - [ ] Have technical component 5% done
 
 ### Sprint 2
 
 - [ ] Teacher and student routing complete
-- [ ] Student UI 100%
+- [ ] Student UI 75%
+     - [ ] Profile
+     - [ ] Assessments summary
+     - [ ] Teacher feedback
 - [ ] Teacher UI 50%
      - [ ] Navigation
      - [ ] New assessment button
