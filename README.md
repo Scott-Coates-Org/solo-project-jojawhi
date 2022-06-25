@@ -1,5 +1,6 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=8037709&assignment_repo_type=AssignmentRepo)
-# React Redux Firebase Starter
+
+# PELA
 
 ## Getting Started
 
@@ -48,37 +49,56 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 - [✅] Get app approved (DM Scott for approval)
 - [✅] Create mockups (physical paper, low-fi)
 - [ ] Define scope (DM Scott for approval)
-  - [ ] Define milestones for each sprint
-  - [ ] Define final deliverable for v1
+     - [ ] Define milestones for each sprint
+     - [ ] Define final deliverable for v1
 - [ ] App must
-  - [ ] Be publicly accessible
-  - [ ] Have working authentication
-  - [ ] Have technical component 5% done
+     - [ ] Be publicly accessible
+     - [ ] Have working authentication
+     - [ ] Have technical component 5% done
 
 ### Sprint 2
 
+- [ ] Teacher and student routing complete
+- [ ] Student UI 100%
+- [ ] Teacher UI 50%
+     - [ ] Navigation
+     - [ ] New assessment button
+     - [ ] Upload file button
+     - [ ] Profile
+     - [ ] View student
 - [ ] Technical component 25%
+     - [ ] Able to upload a file and store it
 - [ ] Re-evaluate milestones and features
-- [ ] [*Fill me in with Sprint 2 milestones*]
-- [ ] [*Fill me in with Sprint 2 milestones*]
 
 ### Sprint 3
 
-- [ ] Technical component 50%
 - [ ] Re-evaluate milestones and features
-- [ ] [*Fill me in with Sprint 3 milestones*]
-- [ ] [*Fill me in with Sprint 3 milestones*]
+- [ ] Teacher UI 100%
+     - [ ] New assessment form flow
+     - [ ] Tabular visualization of assessment stats by student
+- [ ] Technical component 50%
+     - [ ] Able to detect information from an uploaded file and generate an object from it
 
 ### Sprint 4
 
 - [ ] Technical component 100%
-- [ ] [*Fill me in with Sprint 4 milestones*]
-- [ ] [*Fill me in with Sprint 4 milestones*]
+     - [ ] Able to detect details from an uploaded file and generate an object
+     - [ ] Able to auto fill new assessment form with detected information
+- [ ] Student UI
+     - [ ] View assessment summary
+     - [ ] View details about each assessment, including originally uploaded document
+     - [ ] View feedback
+     - [ ] Profile
+- [ ] Teacher UI
+     - [ ] Dashboard
+     - [ ] List of classes/students
+     - [ ] Tabular visualization of assessment stats by student
+     - [ ] Form flow for uploading new assessment
 
 ## Mockups
 
 [*Replace me with mockups*]
 
 | ![](src/images/student-dashboard.png) | ![](src/images/teacher-student-view.png) |
-|----------------------------------------------------------------------|----------------------------------------------------------------------|
-| ![](src/images/pela3.jpg) | ![](src/images/pela4.jpg) |
+| ------------------------------------- | ---------------------------------------- |
+| ![](src/images/pela3.jpg)             | ![](src/images/pela4.jpg)                |
