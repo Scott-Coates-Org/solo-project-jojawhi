@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { useEffect, useState } from 'react';
 import { StyledFirebaseAuth } from 'react-firebaseui';
+import UserButton from './user-button/user-button.component';
+import FormInput from './form-input/form-input.component';
+import { Routes, Route } from 'react-router-dom';
 
 const componentLoginForms = {
 	login: LoginForm,
@@ -56,6 +59,29 @@ export default function Login(props) {
 
 function LoginForm(props) {
 	const { firebase, setForm } = props;
+
+	// Josh's new code start
+	const defaultFormFields = {
+		email: '',
+		password: '',
+	};
+
+	const [formFields, setFormFields] = useState(defaultFormFields);
+
+	const { email, password } = formFields;
+
+	const handleChange = (event) => {
+		const { name, value } = event.target;
+		console.log(value);
+
+		setFormFields({ ...formFields, [name]: value });
+	};
+
+	// const handleClick = (props) => {
+	// 	console.log(props);
+	// };
+
+	// Josh's new code end
 
 	// right now, the oauth form shows a firebae domain.
 	// do not worory, others use magic link as well https://stackoverflow.com/questions/47532134/changing-the-domain-shown-by-google-account-chooser
@@ -162,6 +188,32 @@ function LoginForm(props) {
 						Login with email address.
 					</a>
 				</p>
+			</FormGroup>
+			<FormGroup>
+				<UserButton
+					label='Instructor'
+					// onClick={console.log('instructor')}
+				></UserButton>
+				<UserButton
+					label='Student'
+					// onClick={console.log('student')}
+				></UserButton>
+				<FormInput
+					label='Email'
+					type='text'
+					required
+					onChange={handleChange}
+					name='email'
+					value={email}
+				/>
+				<FormInput
+					label='Password'
+					type='password'
+					required
+					onChange={handleChange}
+					name='password'
+					value={password}
+				/>
 			</FormGroup>
 		</Form>
 	);
