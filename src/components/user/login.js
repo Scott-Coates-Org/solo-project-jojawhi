@@ -4,9 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { useEffect, useState } from 'react';
 import { StyledFirebaseAuth } from 'react-firebaseui';
-import UserButton from './user-button/user-button.component';
-import FormInput from './form-input/form-input.component';
 import { Routes, Route } from 'react-router-dom';
+import InstructorLogin from './instructor-login/instructor-login.component';
 
 const componentLoginForms = {
 	login: LoginForm,
@@ -60,29 +59,6 @@ export default function Login(props) {
 function LoginForm(props) {
 	const { firebase, setForm } = props;
 
-	// Josh's new code start
-	const defaultFormFields = {
-		email: '',
-		password: '',
-	};
-
-	const [formFields, setFormFields] = useState(defaultFormFields);
-
-	const { email, password } = formFields;
-
-	const handleChange = (event) => {
-		const { name, value } = event.target;
-		console.log(value);
-
-		setFormFields({ ...formFields, [name]: value });
-	};
-
-	// const handleClick = (props) => {
-	// 	console.log(props);
-	// };
-
-	// Josh's new code end
-
 	// right now, the oauth form shows a firebae domain.
 	// do not worory, others use magic link as well https://stackoverflow.com/questions/47532134/changing-the-domain-shown-by-google-account-chooser
 
@@ -113,109 +89,84 @@ function LoginForm(props) {
 			});
 	};
 
-	const handleGoogleLogin = (e) => {
-		e.preventDefault();
-		const googleProvider = new firebase.auth.GoogleAuthProvider();
-		return handleLogin(googleProvider);
-	};
+	// const handleGoogleLogin = (e) => {
+	// 	e.preventDefault();
+	// 	const googleProvider = new firebase.auth.GoogleAuthProvider();
+	// 	return handleLogin(googleProvider);
+	// };
 
-	const handleFacebookLogin = (e) => {
-		e.preventDefault();
-		const facebookProvider = new firebase.auth.FacebookAuthProvider();
-		return handleLogin(facebookProvider);
-	};
+	// const handleFacebookLogin = (e) => {
+	// 	e.preventDefault();
+	// 	const facebookProvider = new firebase.auth.FacebookAuthProvider();
+	// 	return handleLogin(facebookProvider);
+	// };
 
 	const handleEmailLogin = (e) => {
 		e.preventDefault();
 		setForm('email');
 	};
 
-	const terms = (
-		<a href='#' target='_blank'>
-			Terms of Service
-		</a>
-	);
+	// const terms = (
+	// 	<a href='#' target='_blank'>
+	// 		Terms of Service
+	// 	</a>
+	// );
 
-	const privacy = (
-		<a href='#' target='_blank'>
-			Privacy Policy
-		</a>
-	);
+	// const privacy = (
+	// 	<a href='#' target='_blank'>
+	// 		Privacy Policy
+	// 	</a>
+	// );
 
 	const retVal = (
-		<Form>
-			<FormGroup>
-				<p className='small text-left text-muted font-weight-light'>
-					By proceeding, you are agreeing to the {terms} and {privacy}
-					.
-				</p>
-			</FormGroup>
-			<Row form>
-				<Col md={6}>
-					<FormGroup>
-						{/*   <Label for="about.firstName">First Name</Label>
-            <Input type="text" /> */}
-						<Button
-							className='btn-block btn-light d-flex flex-row justify-content-around align-items-center'
-							onClick={handleGoogleLogin}
-						>
-							<FontAwesomeIcon
-								icon={faGoogle}
-								className='mr-lg-1'
-							/>
-							Continue with Google
-						</Button>
-					</FormGroup>
-				</Col>
-				<Col md={6}>
-					<FormGroup>
-						{/* for some reason btn-primary does not work? */}
-						<Button
-							className='btn-block d-flex flex-row justify-content-around align-items-center'
-							color='primary'
-							onClick={handleFacebookLogin}
-						>
-							<FontAwesomeIcon icon={faFacebook} />
-							Continue with Facebook
-						</Button>
-					</FormGroup>
-				</Col>
-			</Row>
-			<p className='small text-center font-weight-light'>or</p>
-			<FormGroup>
-				<p className='small text-center text-muted font-weight-light'>
-					<a href='#' onClick={handleEmailLogin}>
-						Login with email address.
-					</a>
-				</p>
-			</FormGroup>
-			<FormGroup>
-				<UserButton
-					label='Instructor'
-					// onClick={console.log('instructor')}
-				></UserButton>
-				<UserButton
-					label='Student'
-					// onClick={console.log('student')}
-				></UserButton>
-				<FormInput
-					label='Email'
-					type='text'
-					required
-					onChange={handleChange}
-					name='email'
-					value={email}
-				/>
-				<FormInput
-					label='Password'
-					type='password'
-					required
-					onChange={handleChange}
-					name='password'
-					value={password}
-				/>
-			</FormGroup>
-		</Form>
+		<InstructorLogin />
+		// <Form>
+		// 	<FormGroup>
+		// 		<p className='small text-left text-muted font-weight-light'>
+		// 			By proceeding, you are agreeing to the {terms} and {privacy}
+		// 			.
+		// 		</p>
+		// 	</FormGroup>
+		// 	<Row form>
+		// 		<Col md={6}>
+		// 			<FormGroup>
+		// 				{/*   <Label for="about.firstName">First Name</Label>
+		//         <Input type="text" /> */}
+		// 				<Button
+		// 					className='btn-block btn-light d-flex flex-row justify-content-around align-items-center'
+		// 					onClick={handleGoogleLogin}
+		// 				>
+		// 					<FontAwesomeIcon
+		// 						icon={faGoogle}
+		// 						className='mr-lg-1'
+		// 					/>
+		// 					Continue with Google
+		// 				</Button>
+		// 			</FormGroup>
+		// 		</Col>
+		// 		<Col md={6}>
+		// 			<FormGroup>
+		// 				{/* for some reason btn-primary does not work? */}
+		// 				<Button
+		// 					className='btn-block d-flex flex-row justify-content-around align-items-center'
+		// 					color='primary'
+		// 					onClick={handleFacebookLogin}
+		// 				>
+		// 					<FontAwesomeIcon icon={faFacebook} />
+		// 					Continue with Facebook
+		// 				</Button>
+		// 			</FormGroup>
+		// 		</Col>
+		// 	</Row>
+		// 	<p className='small text-center font-weight-light'>or</p>
+		// 	<FormGroup>
+		// 		<p className='small text-center text-muted font-weight-light'>
+		// 			<a href='#' onClick={handleEmailLogin}>
+		// 				Login with email address.
+		// 			</a>
+		// 		</p>
+		// 	</FormGroup>
+		// </Form>
 	);
 
 	return retVal;

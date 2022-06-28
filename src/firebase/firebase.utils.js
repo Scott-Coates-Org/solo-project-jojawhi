@@ -1,54 +1,34 @@
-import {
-	getAuth,
-	createUserWithEmailAndPassword,
-	signInWithEmailAndPassword,
-	signOut,
-} from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
-import client from './client';
+import { firebase } from './client';
 
-export const auth = getAuth();
+import 'firebase/auth';
 
-export const db = getFirestore(client);
+export const auth = firebase.auth();
 
-export const createAuthUserWithEmailAndPassword = async (email, password) => {
+export const db = firebase.firestore();
+
+export const createAuthUserWithEmailAndPassword = async (email, password, organization) => {
 	if (!email || !password) {
 		return;
 	}
 
-	return await createUserWithEmailAndPassword(auth, email, password);
+	await auth.createUserWithEmailAndPassword(email, password).then(() => {
+		//Add newly authorized user to database with auth token uid as doc id
+		db.collection('users').doc(auth.currentUser.uid).set({
+			email: email,
+			organization: organization,
+		});
+		console.log(currentUser);
+	});
 };
 
-export const signInAuthWithUserAndPassword = async (email, password) => {
+export const signInAuthWithEmailAndPassword = async (email, password) => {
 	if (!email || !password) {
 		return;
 	}
 
-	return await signInWithEmailAndPassword(auth, email, password);
+	await auth.signInWithEmailAndPassword(email, password).then(() => {
+		console.log(auth.currentUser);
+	});
 };
 
-export const createUserDocFromAuth = async (userAuth, additionalInformation = {}) => {
-	const userDocRef = doc(db, 'users', userAuth, uid);
-
-	const userSnapshot = await getDoc(userDocRef);
-
-	if (!userSnapshot.exists()) {
-		const { displayName, email } = userAuth;
-		const createdAt = new Date();
-
-		try {
-			await setDoc(userDocRef, {
-				displayName,
-				email,
-				createdAt,
-				...additionalInformation,
-			});
-		} catch (error) {
-			console.log('Error creating user', error.message);
-		}
-	} else {
-		return userDocRef;
-	}
-};
-
-export const signOutUser = async () => signOut(auth);
+export const signOutUser = async () => auth.signOut();

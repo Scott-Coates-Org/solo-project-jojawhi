@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from 'components/home';
+// import Home from 'components/home';
 import { AuthProvider, useAuth } from 'components/user/auth';
 import Login from 'components/user/login';
 import Logout from 'components/user/logout';
@@ -12,6 +12,8 @@ import store from 'redux/store';
 import { getData, getDataSuccess } from 'redux/user';
 import ErrorBoundary from 'components/error-boundary';
 import UserLanding from './user/user-landing/user-landing.component';
+import InstructorLogin from './user/instructor-login/instructor-login.component';
+import InstructorDashboard from './instructor/instructor-dashboard/instructor-dashboard.component';
 
 // DO NOT import BrowserRouter (as per tutorial). that caused router to not actually do anything.
 // see here: https://stackoverflow.com/questions/63554233/react-router-v5-history-push-changes-the-address-bar-but-does-not-change-the
@@ -51,7 +53,10 @@ function App() {
 			<AuthProvider onLogin={storeUserData}>
 				<Router history={history}>
 					<Switch>
-						<Route path='/' render={() => <UserLanding />} />
+						{/* <Route
+							path='/instructor-login'
+							render={() => <InstructorLogin />}
+						/> */}
 						<Route
 							path='/login'
 							render={(routeProps) => (
@@ -62,6 +67,11 @@ function App() {
 								/>
 							)}
 						/>
+						{/* <Route
+							index
+							path='/'
+							render={() => <UserLanding />}
+						/> */}
 						<Route
 							path='/logout'
 							render={(routeProps) => (
@@ -76,7 +86,7 @@ function App() {
 						{/* this must be on the bottom */}
 						<ProtectedRoute
 							path='/'
-							component={Home}
+							component={InstructorDashboard}
 							{...props}
 						/>
 					</Switch>
