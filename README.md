@@ -53,7 +53,7 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
      - [✅] Define final deliverable for v1
 - [ ] App must
      - [✅] Be publicly accessible
-     - [ ] Have working authentication
+     - [✅] Have working authentication
      - [ ] Have technical component 5% done
 
 ### Sprint 2
