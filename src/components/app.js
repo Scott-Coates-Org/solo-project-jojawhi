@@ -9,11 +9,13 @@ import { useEffect } from 'react';
 import { Provider, useDispatch } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import store from 'redux/store';
-import { getData, getDataSuccess } from 'redux/user';
+import { getData, getDataSuccess } from 'redux/user/user';
 import ErrorBoundary from 'components/error-boundary';
 import UserLanding from './user/user-landing/user-landing.component';
 import InstructorLogin from './user/instructor-login/instructor-login.component';
+import StudentLogin from './student/student-login/student-login.component';
 import InstructorDashboard from './instructor/instructor-dashboard/instructor-dashboard.component';
+import Home from './home';
 
 // DO NOT import BrowserRouter (as per tutorial). that caused router to not actually do anything.
 // see here: https://stackoverflow.com/questions/63554233/react-router-v5-history-push-changes-the-address-bar-but-does-not-change-the
@@ -53,12 +55,13 @@ function App() {
 			<AuthProvider onLogin={storeUserData}>
 				<Router history={history}>
 					<Switch>
-						{/* <Route
-							path='/instructor-login'
-							render={() => <InstructorLogin />}
-						/> */}
 						<Route
-							path='/login'
+							exact
+							path='/'
+							render={() => <UserLanding />}
+						/>
+						<Route
+							path='/instructor-login'
 							render={(routeProps) => (
 								<Login
 									{...routeProps}
@@ -67,11 +70,16 @@ function App() {
 								/>
 							)}
 						/>
-						{/* <Route
-							index
-							path='/'
-							render={() => <UserLanding />}
-						/> */}
+						<Route
+							path='/student-login'
+							render={(routeProps) => (
+								<StudentLogin
+									{...routeProps}
+									{...props}
+									firebase={firebase}
+								/>
+							)}
+						/>
 						<Route
 							path='/logout'
 							render={(routeProps) => (
@@ -85,7 +93,7 @@ function App() {
 
 						{/* this must be on the bottom */}
 						<ProtectedRoute
-							path='/'
+							path='/dashboard'
 							component={InstructorDashboard}
 							{...props}
 						/>

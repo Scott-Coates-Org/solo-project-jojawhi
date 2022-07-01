@@ -1,11 +1,8 @@
 import { useAuth } from './auth';
-import { Form, FormGroup, Row, Col, Input, Label, Button } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { useEffect, useState } from 'react';
 import { StyledFirebaseAuth } from 'react-firebaseui';
-import { Routes, Route } from 'react-router-dom';
 import InstructorLogin from './instructor-login/instructor-login.component';
+import { auth } from 'firebase/firebase.utils';
 
 const componentLoginForms = {
 	login: LoginForm,
@@ -13,7 +10,7 @@ const componentLoginForms = {
 };
 
 export default function Login(props) {
-	const { user } = useAuth();
+	const { user } = auth;
 
 	const [form, setForm] = useState('login');
 
@@ -22,7 +19,7 @@ export default function Login(props) {
 	// if user exists, redirect to home
 	useEffect(() => {
 		if (user) {
-			const returnTo = props.location.state?.appState?.returnTo || '/';
+			const returnTo = props.location.state?.appState?.returnTo || '/dashboard';
 
 			props.history.replace(returnTo);
 		}
@@ -36,10 +33,6 @@ export default function Login(props) {
 					<h3 className='text-primary'>
 						Log in or create an account
 					</h3>
-					<p>
-						Quickly get started by signing in using your
-						existing accounts.
-					</p>
 				</div>
 				<div className='col-md-6'>
 					<Component {...props} setForm={setForm} />
@@ -57,7 +50,7 @@ export default function Login(props) {
 }
 
 function LoginForm(props) {
-	const { firebase, setForm } = props;
+	const { firebase } = props;
 
 	// right now, the oauth form shows a firebae domain.
 	// do not worory, others use magic link as well https://stackoverflow.com/questions/47532134/changing-the-domain-shown-by-google-account-chooser
@@ -101,10 +94,10 @@ function LoginForm(props) {
 	// 	return handleLogin(facebookProvider);
 	// };
 
-	const handleEmailLogin = (e) => {
-		e.preventDefault();
-		setForm('email');
-	};
+	// const handleEmailLogin = (e) => {
+	// 	e.preventDefault();
+	// 	setForm('email');
+	// };
 
 	// const terms = (
 	// 	<a href='#' target='_blank'>
@@ -180,7 +173,7 @@ function EmailLogin(props) {
 		// Popup signin flow rather than redirect flow.
 		signInFlow: 'popup',
 		// Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-		signInSuccessUrl: props.location.state?.appState.returnTo || '/',
+		signInSuccessUrl: props.location.state?.appState.returnTo || '/dashboard',
 		// We will display Google and Facebook as auth providers.
 		signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
 	};

@@ -11,12 +11,12 @@ const UserLanding = () => {
 				to='/instructor-login'
 				label='Instructor'
 				linkType={LOGIN_LINK_TYPES.instructor}
-			></UserLoginLink>
+			/>
 			<UserLoginLink
-				to='/login'
+				to='/student-login'
 				label='Student'
 				linkType={LOGIN_LINK_TYPES.student}
-			></UserLoginLink>
+			/>
 		</UserLinksContainer>
 	);
 };

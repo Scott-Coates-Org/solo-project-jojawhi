@@ -51,10 +51,10 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 - [✅] Define scope (DM Scott for approval)
      - [✅] Define milestones for each sprint
      - [✅] Define final deliverable for v1
-- [ ] App must
+- [✅] App must
      - [✅] Be publicly accessible
      - [✅] Have working authentication
-     - [ ] Have technical component 5% done
+     - [✅] Have technical component 5% done
 
 ### Sprint 2
 
@@ -66,11 +66,11 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 - [ ] Teacher UI 50%
      - [ ] Navigation
      - [ ] New assessment button
-     - [ ] Upload file button
+     - [✅] Upload file button
      - [ ] Profile
      - [ ] View student
-- [ ] Technical component 25%
-     - [ ] Able to upload a file and store it
+- [✅] Technical component 25%
+     - [✅] Able to upload a file and store it
 - [ ] Re-evaluate milestones and features
 
 ### Sprint 3

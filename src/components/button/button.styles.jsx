@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const BaseButton = styled.button`
 	min-width: 15rem;
+	margin-bottom: 1rem;
 	padding: 0.5rem 1rem;
 	color: #2b2b2b;
 	background-color: #2ec272;
