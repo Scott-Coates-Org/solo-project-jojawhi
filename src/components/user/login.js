@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import { StyledFirebaseAuth } from 'react-firebaseui';
 import InstructorLogin from './instructor-login/instructor-login.component';
 import { auth } from 'firebase/firebase.utils';
+import { Form, FormGroup, Row, Col, Button } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const componentLoginForms = {
 	login: LoginForm,
@@ -12,14 +15,15 @@ const componentLoginForms = {
 export default function Login(props) {
 	const { user } = auth;
 
-	const [form, setForm] = useState('login');
+	const [form, setForm] = useState('email');
 
 	const Component = componentLoginForms[form];
 
 	// if user exists, redirect to home
 	useEffect(() => {
 		if (user) {
-			const returnTo = props.location.state?.appState?.returnTo || '/dashboard';
+			// const returnTo = props.location.state?.appState?.returnTo || '/dashboard';
+			const returnTo = '/';
 
 			props.history.replace(returnTo);
 		}
@@ -82,22 +86,22 @@ function LoginForm(props) {
 			});
 	};
 
-	// const handleGoogleLogin = (e) => {
-	// 	e.preventDefault();
-	// 	const googleProvider = new firebase.auth.GoogleAuthProvider();
-	// 	return handleLogin(googleProvider);
-	// };
+	const handleGoogleLogin = (e) => {
+		e.preventDefault();
+		const googleProvider = new firebase.auth.GoogleAuthProvider();
+		return handleLogin(googleProvider);
+	};
 
-	// const handleFacebookLogin = (e) => {
-	// 	e.preventDefault();
-	// 	const facebookProvider = new firebase.auth.FacebookAuthProvider();
-	// 	return handleLogin(facebookProvider);
-	// };
+	const handleFacebookLogin = (e) => {
+		e.preventDefault();
+		const facebookProvider = new firebase.auth.FacebookAuthProvider();
+		return handleLogin(facebookProvider);
+	};
 
-	// const handleEmailLogin = (e) => {
-	// 	e.preventDefault();
-	// 	setForm('email');
-	// };
+	const handleEmailLogin = (e) => {
+		e.preventDefault();
+		setForm('email');
+	};
 
 	// const terms = (
 	// 	<a href='#' target='_blank'>
@@ -112,54 +116,54 @@ function LoginForm(props) {
 	// );
 
 	const retVal = (
-		<InstructorLogin />
-		// <Form>
-		// 	<FormGroup>
-		// 		<p className='small text-left text-muted font-weight-light'>
-		// 			By proceeding, you are agreeing to the {terms} and {privacy}
-		// 			.
-		// 		</p>
-		// 	</FormGroup>
-		// 	<Row form>
-		// 		<Col md={6}>
-		// 			<FormGroup>
-		// 				{/*   <Label for="about.firstName">First Name</Label>
-		//         <Input type="text" /> */}
-		// 				<Button
-		// 					className='btn-block btn-light d-flex flex-row justify-content-around align-items-center'
-		// 					onClick={handleGoogleLogin}
-		// 				>
-		// 					<FontAwesomeIcon
-		// 						icon={faGoogle}
-		// 						className='mr-lg-1'
-		// 					/>
-		// 					Continue with Google
-		// 				</Button>
-		// 			</FormGroup>
-		// 		</Col>
-		// 		<Col md={6}>
-		// 			<FormGroup>
-		// 				{/* for some reason btn-primary does not work? */}
-		// 				<Button
-		// 					className='btn-block d-flex flex-row justify-content-around align-items-center'
-		// 					color='primary'
-		// 					onClick={handleFacebookLogin}
-		// 				>
-		// 					<FontAwesomeIcon icon={faFacebook} />
-		// 					Continue with Facebook
-		// 				</Button>
-		// 			</FormGroup>
-		// 		</Col>
-		// 	</Row>
-		// 	<p className='small text-center font-weight-light'>or</p>
-		// 	<FormGroup>
-		// 		<p className='small text-center text-muted font-weight-light'>
-		// 			<a href='#' onClick={handleEmailLogin}>
-		// 				Login with email address.
-		// 			</a>
-		// 		</p>
-		// 	</FormGroup>
-		// </Form>
+		// <InstructorLogin />
+		<Form>
+			{/* <FormGroup>
+				<p className='small text-left text-muted font-weight-light'>
+					By proceeding, you are agreeing to the {terms} and {privacy}
+					.
+				</p>
+			</FormGroup> */}
+			<Row form>
+				<Col md={6}>
+					<FormGroup>
+						{/*   <Label for="about.firstName">First Name</Label>
+		        <Input type="text" /> */}
+						<Button
+							className='btn-block btn-light d-flex flex-row justify-content-around align-items-center'
+							onClick={handleGoogleLogin}
+						>
+							<FontAwesomeIcon
+								icon={faGoogle}
+								className='mr-lg-1'
+							/>
+							Continue with Google
+						</Button>
+					</FormGroup>
+				</Col>
+				<Col md={6}>
+					<FormGroup>
+						{/* for some reason btn-primary does not work? */}
+						<Button
+							className='btn-block d-flex flex-row justify-content-around align-items-center'
+							color='primary'
+							onClick={handleFacebookLogin}
+						>
+							<FontAwesomeIcon icon={faFacebook} />
+							Continue with Facebook
+						</Button>
+					</FormGroup>
+				</Col>
+			</Row>
+			<p className='small text-center font-weight-light'>or</p>
+			<FormGroup>
+				<p className='small text-center text-muted font-weight-light'>
+					<a href='#' onClick={handleEmailLogin}>
+						Login with email address.
+					</a>
+				</p>
+			</FormGroup>
+		</Form>
 	);
 
 	return retVal;
@@ -173,7 +177,7 @@ function EmailLogin(props) {
 		// Popup signin flow rather than redirect flow.
 		signInFlow: 'popup',
 		// Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-		signInSuccessUrl: props.location.state?.appState.returnTo || '/dashboard',
+		signInSuccessUrl: '/dashboard', // props.location.state?.appState.returnTo || '/dashboard',
 		// We will display Google and Facebook as auth providers.
 		signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
 	};

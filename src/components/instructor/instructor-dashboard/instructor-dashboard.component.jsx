@@ -1,12 +1,18 @@
 import Button from 'components/button/button.component';
-import { signOutUser } from 'firebase/firebase.utils';
-import FileInput from 'components/file-input/file-input.component';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { createAssessment, fetchAllAssessments, saveFile } from 'redux/assessment/assessment';
+import { createAssessment, saveFile } from 'redux/assessment/assessment';
 import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
 import { FormGroup, Label, Input } from 'reactstrap';
+import { Link, Route } from 'react-router-dom';
+import AssessmentTable from 'components/table/assessment-table.component';
+import SidebarNav from 'components/sidebar-nav/sidebar-nav.component';
+import {
+	InstructorDashboardContainer,
+	BottomContainer,
+	ContentContainer,
+} from './instructor-dashboard.styles';
+import AssessmentPage from 'components/assessment-page/assessment-page.component';
 
 const InstructorDashboard = () => {
 	const dispatch = useDispatch();
@@ -27,6 +33,11 @@ const InstructorDashboard = () => {
 		formState: { errors },
 	} = useForm();
 
+	const { ref: skillRef, ...skillRest } = register('skill', { required: true });
+	const { ref: taskTypeRef, ...taskTypeRest } = register('taskType', { required: true });
+	const { ref: isSuccessfulRef, ...isSuccessfulRest } = register('isSuccessful', {
+		required: true,
+	});
 	const { ref: fileRef, ...fileRest } = register('file', { required: true });
 
 	const onSubmit = (data) => {
@@ -38,11 +49,14 @@ const InstructorDashboard = () => {
 				if (fileURL) {
 					dispatch(
 						createAssessment({
+							skill: data.skill,
+							taskType: data.taskType,
+							isSuccessful: data.isSuccessful,
 							file: fileURL,
 						})
 					).then(() => {
 						reset();
-						dispatch(fetchAllAssessments());
+						// dispatch(fetchAllAssessments());
 					});
 				}
 			});
@@ -50,25 +64,26 @@ const InstructorDashboard = () => {
 	};
 
 	return (
-		<div className='instructor-dashboard-container'>
-			<h1>Instructor Dashboard</h1>
-			<form onSubmit={handleSubmit(onSubmit)} encType='multipart/form-data'>
-				<FormGroup>
-					<Label for='file'>Upload Assessment</Label>
-					<Input
-						id='file'
-						type='file'
-						accept='.pdf, .doc, .docx, application/msword'
-						{...fileRest}
-						innerRef={fileRef}
-						invalid={errors.file}
-					/>
-				</FormGroup>
+		<InstructorDashboardContainer>
+			<div className='top-nav-container' style={{ backgroundColor: 'lightblue' }}>
+				<p>Top Nav</p>
+			</div>
+			<BottomContainer>
+				<SidebarNav />
+				<ContentContainer>
+					<Route
+						path='/dashboard/assessments'
+						render={() => <AssessmentPage />}
+					></Route>
+					<Route
+						path='/dashboard/new-assessment'
+						render={() => <NewAssessmentPage />}
+					></Route>
 
-				<Button type='submit'>Upload</Button>
-			</form>
-			<Button onClick={signOutUser}>Sign Out</Button>
-		</div>
+					<Link to='/logout'>Sign Out</Link>
+				</ContentContainer>
+			</BottomContainer>
+		</InstructorDashboardContainer>
 	);
 };
 

@@ -59,10 +59,6 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 ### Sprint 2
 
 - [ ] Teacher and student routing complete
-- [ ] Student UI 75%
-     - [ ] Profile
-     - [ ] Assessments summary
-     - [ ] Teacher feedback
 - [ ] Teacher UI 50%
      - [ ] Navigation
      - [ ] New assessment button
@@ -79,6 +75,10 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 - [ ] Teacher UI 100%
      - [ ] New assessment form flow
      - [ ] Tabular visualization of assessment stats by student
+- [ ] Student UI 75%
+     - [ ] Profile
+     - [ ] Assessments summary
+     - [ ] Teacher feedback
 - [ ] Technical component 50%
      - [ ] Able to detect information from an uploaded file and generate an object from it
 

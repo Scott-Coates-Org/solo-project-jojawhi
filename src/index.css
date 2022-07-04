@@ -2,8 +2,11 @@
 	box-sizing: border-box;
 }
 
-body {
+html,
+body,
+#root {
 	font-family: 'Poppins', sans-serif;
+	height: 100%;
 }
 
 a {

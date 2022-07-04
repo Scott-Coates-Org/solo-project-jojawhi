@@ -3,12 +3,8 @@ import { Group, Input, FormInputLabel } from './form-input.styles.jsx';
 const FormInput = ({ label, ...otherProps }) => {
 	return (
 		<Group>
+			{label && <FormInputLabel>{label}</FormInputLabel>}
 			<Input {...otherProps} />
-			{label && (
-				<FormInputLabel shrink={otherProps.value.length}>
-					{label}
-				</FormInputLabel>
-			)}
 		</Group>
 	);
 };

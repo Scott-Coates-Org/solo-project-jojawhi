@@ -5,6 +5,7 @@ const initialState = {
 	data: {},
 	isLoaded: false,
 	hasErrors: false,
+	errorMsg: {},
 };
 
 const user = createSlice({
@@ -20,9 +21,10 @@ const user = createSlice({
 			state.data = action.payload;
 		},
 
-		getDataFailure: (state) => {
+		getDataFailure: (state, action) => {
 			state.isLoaded = true;
 			state.hasErrors = true;
+			state.errorMsg = action.payload;
 		},
 	},
 });

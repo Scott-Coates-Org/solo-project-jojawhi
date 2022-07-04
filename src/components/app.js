@@ -12,10 +12,9 @@ import store from 'redux/store';
 import { getData, getDataSuccess } from 'redux/user/user';
 import ErrorBoundary from 'components/error-boundary';
 import UserLanding from './user/user-landing/user-landing.component';
-import InstructorLogin from './user/instructor-login/instructor-login.component';
 import StudentLogin from './student/student-login/student-login.component';
 import InstructorDashboard from './instructor/instructor-dashboard/instructor-dashboard.component';
-import Home from './home';
+import HomePage from './home-page/home-page.component';
 
 // DO NOT import BrowserRouter (as per tutorial). that caused router to not actually do anything.
 // see here: https://stackoverflow.com/questions/63554233/react-router-v5-history-push-changes-the-address-bar-but-does-not-change-the
@@ -47,6 +46,8 @@ function App() {
 
 		const userData = { ...providerData, uid: user.uid };
 
+		console.log(user.uid);
+
 		dispatch(getDataSuccess(userData));
 	};
 
@@ -55,9 +56,9 @@ function App() {
 			<AuthProvider onLogin={storeUserData}>
 				<Router history={history}>
 					<Switch>
+						<Route exact path='/' render={() => <HomePage />} />
 						<Route
-							exact
-							path='/'
+							path='/login-type'
 							render={() => <UserLanding />}
 						/>
 						<Route
@@ -112,7 +113,7 @@ export default AppWithRedux;
 // https://github.com/auth0/auth0-react/blob/master/EXAMPLES.md#1-protecting-a-route-in-a-react-router-dom-app
 const ProtectedRoute = ({ component, ...args }) => {
 	const WrappedComponent = withAuthenticationRequired(component, {
-		onRedirecting: () => 'resuming session…',
+		onRedirecting: () => 'Logging in...',
 	});
 
 	const retVal = (
@@ -152,7 +153,7 @@ function withAuthenticationRequired(Component, options) {
 						},
 					};
 
-					history.push('/login', opts);
+					history.push('/dashboard', opts);
 				}
 			}
 		}, [history, isAuthenticated, loginOptions, returnTo]);
