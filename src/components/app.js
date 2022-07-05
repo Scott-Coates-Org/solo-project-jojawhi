@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import Home from 'components/home';
 import { AuthProvider, useAuth } from 'components/user/auth';
 import Login from 'components/user/login';
 import Logout from 'components/user/logout';
@@ -11,7 +10,6 @@ import { Route, Router, Switch } from 'react-router-dom';
 import store from 'redux/store';
 import { getData, getDataSuccess } from 'redux/user/user';
 import ErrorBoundary from 'components/error-boundary';
-
 import InstructorDashboard from './instructor/instructor-dashboard/instructor-dashboard.component.js';
 import HomePage from './home-page/home-page.component.js';
 
