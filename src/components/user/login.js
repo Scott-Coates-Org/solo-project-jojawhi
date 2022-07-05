@@ -1,7 +1,5 @@
-import { useAuth } from './auth';
 import { useEffect, useState } from 'react';
 import { StyledFirebaseAuth } from 'react-firebaseui';
-import InstructorLogin from './instructor-login/instructor-login.component';
 import { auth } from 'firebase/firebase.utils';
 import { Form, FormGroup, Row, Col, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -177,7 +175,7 @@ function EmailLogin(props) {
 		// Popup signin flow rather than redirect flow.
 		signInFlow: 'popup',
 		// Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-		signInSuccessUrl: '/dashboard', // props.location.state?.appState.returnTo || '/dashboard',
+		signInSuccessUrl: '/dashboard/home', // props.location.state?.appState.returnTo || '/dashboard',
 		// We will display Google and Facebook as auth providers.
 		signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
 	};

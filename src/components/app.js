@@ -11,10 +11,9 @@ import { Route, Router, Switch } from 'react-router-dom';
 import store from 'redux/store';
 import { getData, getDataSuccess } from 'redux/user/user';
 import ErrorBoundary from 'components/error-boundary';
-import UserLanding from './user/user-landing/user-landing.component';
-import StudentLogin from './student/student-login/student-login.component';
-import InstructorDashboard from './instructor/instructor-dashboard/instructor-dashboard.component';
-import HomePage from './home-page/home-page.component';
+
+import InstructorDashboard from './instructor/instructor-dashboard/instructor-dashboard.component.js';
+import HomePage from './home-page/home-page.component.js';
 
 // DO NOT import BrowserRouter (as per tutorial). that caused router to not actually do anything.
 // see here: https://stackoverflow.com/questions/63554233/react-router-v5-history-push-changes-the-address-bar-but-does-not-change-the
@@ -56,25 +55,10 @@ function App() {
 			<AuthProvider onLogin={storeUserData}>
 				<Router history={history}>
 					<Switch>
-						<Route exact path='/' render={() => <HomePage />} />
 						<Route
-							path='/login-type'
-							render={() => <UserLanding />}
-						/>
-						<Route
-							path='/instructor-login'
+							path='/login'
 							render={(routeProps) => (
 								<Login
-									{...routeProps}
-									{...props}
-									firebase={firebase}
-								/>
-							)}
-						/>
-						<Route
-							path='/student-login'
-							render={(routeProps) => (
-								<StudentLogin
 									{...routeProps}
 									{...props}
 									firebase={firebase}
@@ -90,6 +74,12 @@ function App() {
 									firebase={firebase}
 								/>
 							)}
+						/>
+						<Route
+							exact
+							path='/'
+							render={() => <HomePage />}
+							firebase={firebase}
 						/>
 
 						{/* this must be on the bottom */}
@@ -113,7 +103,7 @@ export default AppWithRedux;
 // https://github.com/auth0/auth0-react/blob/master/EXAMPLES.md#1-protecting-a-route-in-a-react-router-dom-app
 const ProtectedRoute = ({ component, ...args }) => {
 	const WrappedComponent = withAuthenticationRequired(component, {
-		onRedirecting: () => 'Logging in...',
+		onRedirecting: () => 'Resuming session…',
 	});
 
 	const retVal = (
@@ -141,6 +131,7 @@ function withAuthenticationRequired(Component, options) {
 			if (isLoaded) {
 				isAuthorized = isAuthenticated;
 
+				// so far the only registered users are admins, they are always authorized because they are always authenticated
 				if (!isAuthorized) {
 					const opts = {
 						...loginOptions,

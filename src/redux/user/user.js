@@ -12,9 +12,7 @@ const user = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		getData: (state) => {
-			console.log(state);
-		},
+		getData: (state) => {},
 
 		getDataSuccess: (state, action) => {
 			state.isLoaded = true;
