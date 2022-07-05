@@ -16,5 +16,5 @@ export const ContentContainer = styled.div`
 	width: 100%;
 	padding: 1rem;
 	margin: 1rem;
-	background-color: teal;
+	background-color: white;
 `;

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bakbak+One&family=Chango&family=Coiny&family=Fredoka+One&family=Mogra&family=Poppins:wght@200;400;500;700&family=Titan+One&display=swap');
+
 * {
 	box-sizing: border-box;
 }
@@ -11,6 +13,7 @@ body,
 
 a {
 	text-decoration: none;
+	color: white;
 }
 
 a:hover {

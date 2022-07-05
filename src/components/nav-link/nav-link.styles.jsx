@@ -21,7 +21,7 @@ export const BaseLink = styled(Link)`
 
 	&:hover {
 		text-decoration: none;
-		color: #33bc21;
+		color: #2ec272;
 		transform: translateX(5px);
 	}
 `;
@@ -42,7 +42,7 @@ export const TopNavSmallLink = styled(BaseLink)`
 	}
 
 	&:hover {
-		transform: none;
+		transform: translateY(-3px);
 	}
 `;
 export const TopNavLargeLink = styled(TopNavSmallLink)`
